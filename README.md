@@ -2,7 +2,7 @@
 
 
 
-##Basic machine learning with python
+## Basic machine learning with python
 
 tools need
 * scipy
@@ -10,3 +10,7 @@ tools need
 * matplotlib
 * pandas
 * sklearn
+
+install instructions here: https://www.scipy.org/install.html
+
+
