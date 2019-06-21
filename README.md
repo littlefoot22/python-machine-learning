@@ -1,8 +1,4 @@
-# python-machine-learning
-
-
-
-## Basic machine learning with python
+# Basic machine learning with python
 
 tools need
 * scipy
