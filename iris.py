@@ -1,6 +1,8 @@
 # Load libraries
 import pandas
 from pandas.plotting import scatter_matrix
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn import model_selection
 from sklearn.metrics import classification_report
@@ -40,7 +42,7 @@ names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
 
 #context = ssl._create_unverified_context()
 
-dataset = pandas.read_csv('iris.csv', names=names)
+dataset = pandas.read_csv('data/iris.csv', names=names)
 
 
 # box and whisker plots
@@ -54,6 +56,14 @@ Y = array[:,4]
 validation_size = 0.20
 seed = 7
 X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+
+print(X_train)
+print()
+print(X_validation)
+print()
+print(Y_train)
+print()
+print(Y_validation)
 
 # Test options and evaluation metric
 seed = 7

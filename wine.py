@@ -40,7 +40,7 @@ print('sklearn: {}'.format(sklearn.__version__))
 
 # Load dataset
 #url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
-names = ['class', 'Alcohol', 'Malic acid', 'Ash', 'Alcalinity of ash', 'Magnesium', 'Total phenols', 'Flavanoids', 'Nonflavanoid phenols', 'Proanthocyanins', 'Color intensity', 'Hue', 'OD280/OD315 of diluted wines', 'Proline']
+names = ['class', 'Alcohol', 'Malic acid', 'Ash', 'Alcalinity of ash', 'Magnesium', 'phenols', 'Flavanoids', 'Nonflavanoid', 'Proanthocyanins', 'Color', 'Hue', 'diluted wines', 'Proline']
 
 #context = ssl._create_unverified_context()
 
@@ -59,11 +59,67 @@ print(dataset.describe())
 
 # box and whisker plots
 #dataset.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
+
+#dataset.plot(kind='box', subplots=True, layout=(14,14), sharex=False, sharey=False)
+
 #plt.savefig('plot.png')
 
 # histograms
-dataset.hist()
-plt.savefig('hist.png')
+#dataset.hist()
+#plt.savefig('hist.png')
 
 # class distribution
-#print(dataset.groupby('class').size())
+print(dataset.groupby('class').size())
+
+#scatter_matrix(dataset)
+
+#plt.savefig('scattermatrix.png', alpha=0.5, figsize=(20, 10), diagonal='kde', s=1000, layout=(14,14))
+
+# Split-out validation dataset
+array = dataset.values
+X = array[:,1:13]
+Y = array[:,0]
+validation_size = 0.20
+seed = 7
+X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+
+# Test options and evaluation metric
+seed = 7
+scoring = 'accuracy'
+
+print(X_train)
+print()
+print(X_validation)
+print()
+print(Y_train)
+print()
+print(Y_validation)
+
+
+# Spot Check Algorithms
+models = []
+models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
+models.append(('LDA', LinearDiscriminantAnalysis()))
+models.append(('KNN', KNeighborsClassifier()))
+models.append(('CART', DecisionTreeClassifier()))
+models.append(('NB', GaussianNB()))
+models.append(('SVM', SVC(gamma='auto')))
+# evaluate each model in turn
+results = []
+names = []
+for name, model in models:
+	kfold = model_selection.KFold(n_splits=10, random_state=seed)
+	cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold, scoring=scoring)
+	results.append(cv_results)
+	names.append(name)
+	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+	print(msg)
+
+
+
+lda = LinearDiscriminantAnalysis()
+lda.fit(X_train, Y_train)
+predictions = lda.predict(X_validation)
+print(accuracy_score(Y_validation, predictions))
+print(confusion_matrix(Y_validation, predictions))
+print(classification_report(Y_validation, predictions))
