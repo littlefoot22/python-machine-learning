@@ -44,7 +44,7 @@ names = ['class', 'Alcohol', 'Malic acid', 'Ash', 'Alcalinity of ash', 'Magnesiu
 
 #context = ssl._create_unverified_context()
 
-dataset = pandas.read_csv('wine.csv', names=names)
+dataset = pandas.read_csv('data/wine.csv', names=names)
 
 	
 # shape
