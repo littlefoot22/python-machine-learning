@@ -96,7 +96,7 @@ again we see lots of signs of normal distrabuiton, which is a good sign for alog
 
 ## scatterplot
 
-after we run the scatter_matrix funtion and output to file we get an idea of the correlation between the diffrent variables. This image is a bit harder to read then the iris example, but we can see some signs of highly positive correlation!
+after we run the scatter_matrix funtion and output to file we get an idea of the correlation between the diffrent variables. This image is a bit harder to read then the iris example, but we can see some signs of highly positive correlation! This suggests a predictable relationship within the data.
 
 ```python
 # histograms
@@ -108,4 +108,26 @@ plt.savefig('scattermatrix.png')
 
 
 ![alt text](http://www.cqeacademy.com/wp-content/uploads/2018/06/Scatter-Plots-and-Correlation-Examples.png "Correlation Examples")
+
+## training and validation data
+
+setting up the training and validation data is a little diffrent then the iris example for this dataset. we need to split the X array from index 1 to 13 and the Y array at index 0. This is because our class attribute is now at the 0 index of the array and our data attributes make up the rest.
+
+We can leave the split at 80/20 so we leave the validation_size at .20
+
+```python
+# Split-out validation dataset
+array = dataset.values
+X = array[:,1:13]
+Y = array[:,0]
+validation_size = 0.20
+seed = 7
+X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+
+# Test options and evaluation metric
+seed = 7
+scoring = 'accuracy'
+```
+
+
 
