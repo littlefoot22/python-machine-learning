@@ -27,6 +27,7 @@ just like we did in the iris example from the above turtorial we can peek at the
 ```python
 print(dataset.shape)
 ```
+output:
 ```bash
 (178, 14)
 ```
@@ -35,7 +36,7 @@ print(dataset.shape)
 ```python
 print(dataset.head(20))
 ```
-
+output:
 ```bash
     class  Alcohol  Malic acid   Ash  Alcalinity of ash  Magnesium  phenols  Flavanoids  Nonflavanoid  Proanthocyanins  Color   Hue  diluted wines  Proline
 0       1    14.23        1.71  2.43               15.6        127     2.80        3.06          0.28             2.29   5.64  1.04           3.92     1065
