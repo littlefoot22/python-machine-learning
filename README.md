@@ -92,5 +92,5 @@ plt.savefig('hist.png')
 ```
 ![alt text](https://github.com/littlefoot22/python-machine-learning/blob/master/images/hist.png "Histogram")
 
-
+again we see lots of signs of normal distrabuiton, which is a good sign for alogrithims and predictions!
 
