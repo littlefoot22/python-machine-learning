@@ -130,4 +130,66 @@ scoring = 'accuracy'
 ```
 
 
+## slecting a model
+
+now lets run the same models we did in the iris example and see if we get a hit
+
+```python
+# Spot Check Algorithms
+models = []
+models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
+models.append(('LDA', LinearDiscriminantAnalysis()))
+models.append(('KNN', KNeighborsClassifier()))
+models.append(('CART', DecisionTreeClassifier()))
+models.append(('NB', GaussianNB()))
+models.append(('SVM', SVC(gamma='auto')))
+# evaluate each model in turn
+results = []
+names = []
+for name, model in models:
+        kfold = model_selection.KFold(n_splits=10, random_state=seed)
+        cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold, scoring=scoring)
+        results.append(cv_results)
+        names.append(name)
+        msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+        print(msg)
+#output
+#LR: 0.930000 (0.070536)
+#LDA: 0.979048 (0.032029)
+#KNN: 0.808571 (0.115211)
+#CART: 0.914762 (0.077033)
+#NB: 0.944286 (0.068778)
+#SVM: 0.859048 (0.077495)
+```
+
+nice! Looks like we have a score of 97 for the LinearDiscriminantAnalysis model, lets plug it into the data
+
+```python
+lda = LinearDiscriminantAnalysis()
+lda.fit(X_train, Y_train)
+predictions = lda.predict(X_validation)
+print(accuracy_score(Y_validation, predictions))
+print(confusion_matrix(Y_validation, predictions))
+print(classification_report(Y_validation, predictions))
+
+#output
+#0.9722222222222222
+#[[ 7  0  0]
+# [ 0 16  1]
+# [ 0  0 12]]
+#              precision    recall  f1-score   support
+
+#         1.0       1.00      1.00      1.00         7
+#         2.0       1.00      0.94      0.97        17
+#         3.0       0.92      1.00      0.96        12
+
+#    accuracy                           0.97        36
+#   macro avg       0.97      0.98      0.98        36
+#weighted avg       0.97      0.97      0.97        36
+```
+
+looks like we hit 97% accuracy on our predictions agaisnt our traiing data and validation set! Thats even higher then the iris example! 
+
+How exciting :D
+
 
