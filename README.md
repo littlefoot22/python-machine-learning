@@ -13,6 +13,14 @@ install instructions here: https://www.scipy.org/install.html
 
 data set used http://archive.ics.uci.edu/ml/datasets/Wine
 
+## names
+
+first the names need to be added, we can pull these attributes from the wine.names file. One diffrence here from the iris example is the class is now a number and its the first entry into the names array
+
+```python
+names = ['class', 'Alcohol', 'Malic acid', 'Ash', 'Alcalinity of ash', 'Magnesium', 'phenols', 'Flavanoids', 'Nonflavanoid', 'Proanthocyanins', 'Color', 'Hue', 'diluted wines', 'Proline']
+```
+
 ### Dimensions of Dataset
 just like we did in the iris example from the above turtorial we can peek at the data a little bit:
 
@@ -51,3 +59,5 @@ print(dataset.head(20))
 18      1    14.19        1.59  2.48               16.5        108     3.30        3.93          0.32             1.86   8.70  1.23           2.82     1680
 19      1    13.64        3.10  2.56               15.2        116     2.70        3.03          0.17             1.66   5.10  0.96           3.36      845
 ```
+looks good!
+
