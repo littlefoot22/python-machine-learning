@@ -21,7 +21,7 @@ first the names need to be added, we can pull these attributes from the wine.nam
 names = ['class', 'Alcohol', 'Malic acid', 'Ash', 'Alcalinity of ash', 'Magnesium', 'phenols', 'Flavanoids', 'Nonflavanoid', 'Proanthocyanins', 'Color', 'Hue', 'diluted wines', 'Proline']
 ```
 
-### Dimensions of Dataset
+### dimensions of dataset
 just like we did in the iris example from the above turtorial we can peek at the data a little bit:
 
 ```python
@@ -93,4 +93,103 @@ plt.savefig('hist.png')
 ![alt text](https://github.com/littlefoot22/python-machine-learning/blob/master/images/hist.png "Histogram")
 
 again we see lots of signs of normal distrabuiton, which is a good sign for alogrithims and predictions!
+
+## scatterplot
+
+after we run the scatter_matrix funtion and output to file we get an idea of the correlation between the diffrent variables. This image is a bit harder to read then the iris example, but we can see some signs of highly positive correlation! This suggests a predictable relationship within the data.
+
+```python
+# histograms
+scatter_matrix(dataset)
+plt.savefig('scattermatrix.png')
+```
+
+![alt text](https://github.com/littlefoot22/python-machine-learning/blob/master/images/scattermatrix.png "Scatter Plot")
+
+
+![alt text](http://www.cqeacademy.com/wp-content/uploads/2018/06/Scatter-Plots-and-Correlation-Examples.png "Correlation Examples")
+
+## training and validation data
+
+setting up the training and validation data is a little diffrent then the iris example for this dataset. we need to split the X array from index 1 to 13 and the Y array at index 0. This is because our class attribute is now at the 0 index of the array and our data attributes make up the rest.
+
+We can leave the split at 80/20 so we leave the validation_size at .20
+
+```python
+# Split-out validation dataset
+array = dataset.values
+X = array[:,1:13]
+Y = array[:,0]
+validation_size = 0.20
+seed = 7
+X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+
+# Test options and evaluation metric
+seed = 7
+scoring = 'accuracy'
+```
+
+
+## slecting a model
+
+now lets run the same models we did in the iris example and see if we get a hit
+
+```python
+# Spot Check Algorithms
+models = []
+models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
+models.append(('LDA', LinearDiscriminantAnalysis()))
+models.append(('KNN', KNeighborsClassifier()))
+models.append(('CART', DecisionTreeClassifier()))
+models.append(('NB', GaussianNB()))
+models.append(('SVM', SVC(gamma='auto')))
+# evaluate each model in turn
+results = []
+names = []
+for name, model in models:
+        kfold = model_selection.KFold(n_splits=10, random_state=seed)
+        cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold, scoring=scoring)
+        results.append(cv_results)
+        names.append(name)
+        msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+        print(msg)
+#output
+#LR: 0.930000 (0.070536)
+#LDA: 0.979048 (0.032029)
+#KNN: 0.808571 (0.115211)
+#CART: 0.914762 (0.077033)
+#NB: 0.944286 (0.068778)
+#SVM: 0.859048 (0.077495)
+```
+
+nice! Looks like we have a score of 97 for the LinearDiscriminantAnalysis model, lets plug it into the data
+
+```python
+lda = LinearDiscriminantAnalysis()
+lda.fit(X_train, Y_train)
+predictions = lda.predict(X_validation)
+print(accuracy_score(Y_validation, predictions))
+print(confusion_matrix(Y_validation, predictions))
+print(classification_report(Y_validation, predictions))
+
+#output
+#0.9722222222222222
+#[[ 7  0  0]
+# [ 0 16  1]
+# [ 0  0 12]]
+#              precision    recall  f1-score   support
+
+#         1.0       1.00      1.00      1.00         7
+#         2.0       1.00      0.94      0.97        17
+#         3.0       0.92      1.00      0.96        12
+
+#    accuracy                           0.97        36
+#   macro avg       0.97      0.98      0.98        36
+#weighted avg       0.97      0.97      0.97        36
+```
+
+looks like we hit 97% accuracy on our predictions agaisnt our traiing data and validation set! Thats even higher then the iris example! 
+
+How exciting :D
+
 
