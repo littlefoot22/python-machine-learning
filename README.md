@@ -81,3 +81,16 @@ print(dataset.groupby('class').size())
 
 looks good!
 
+## histogram
+
+after we run the historam funtion and out put to file we get an idea the distribution between variables
+
+```python
+# histograms
+dataset.hist()
+plt.savefig('hist.png')
+```
+![alt text](https://github.com/littlefoot22/python-machine-learning/blob/master/images/hist.png "Histogram")
+
+again we see lots of signs of normal distrabuiton, which is a good sign for alogrithims and predictions!
+
