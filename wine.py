@@ -18,25 +18,6 @@ from sklearn.svm import SVC
 #import ssl
 
 
-# Python version
-import sys
-print('Python: {}'.format(sys.version))
-# scipy
-import scipy
-print('scipy: {}'.format(scipy.__version__))
-# numpy
-import numpy
-print('numpy: {}'.format(numpy.__version__))
-# matplotlib
-import matplotlib
-print('matplotlib: {}'.format(matplotlib.__version__))
-# pandas
-import pandas
-print('pandas: {}'.format(pandas.__version__))
-# scikit-learn
-import sklearn
-print('sklearn: {}'.format(sklearn.__version__))
-
 
 # Load dataset
 #url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
@@ -48,10 +29,10 @@ dataset = pandas.read_csv('data/wine.csv', names=names)
 
 	
 # shape
-#print(dataset.shape)
+print(dataset.shape)
 
 # head
-#print(dataset.head(20))
+print(dataset.head(20))
 
 
 # descriptions
@@ -64,16 +45,15 @@ print(dataset.describe())
 
 #plt.savefig('plot.png')
 
-# histograms
-#dataset.hist()
-#plt.savefig('hist.png')
-
 # class distribution
 print(dataset.groupby('class').size())
 
-#scatter_matrix(dataset)
+# histograms
+dataset.hist()
+plt.savefig('hist.png')
 
-#plt.savefig('scattermatrix.png', alpha=0.5, figsize=(20, 10), diagonal='kde', s=1000, layout=(14,14))
+scatter_matrix(dataset)
+plt.savefig('scattermatrix.png')
 
 # Split-out validation dataset
 array = dataset.values
