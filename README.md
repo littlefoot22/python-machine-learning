@@ -21,7 +21,7 @@ first the names need to be added, we can pull these attributes from the wine.nam
 names = ['class', 'Alcohol', 'Malic acid', 'Ash', 'Alcalinity of ash', 'Magnesium', 'phenols', 'Flavanoids', 'Nonflavanoid', 'Proanthocyanins', 'Color', 'Hue', 'diluted wines', 'Proline']
 ```
 
-### Dimensions of Dataset
+### dimensions of dataset
 just like we did in the iris example from the above turtorial we can peek at the data a little bit:
 
 ```python
@@ -93,4 +93,16 @@ plt.savefig('hist.png')
 ![alt text](https://github.com/littlefoot22/python-machine-learning/blob/master/images/hist.png "Histogram")
 
 again we see lots of signs of normal distrabuiton, which is a good sign for alogrithims and predictions!
+
+## scatterplot
+
+after we run the scatter_matrix funtion and output to file we get an idea of the correlation between the diffrent variables. This image is a bit harder to read then the iris example, but we can see some signs of highly positive correlation!
+
+```python
+# histograms
+scatter_matrix(dataset)
+plt.savefig('scattermatrix.png')
+```
+
+![alt text](https://github.com/littlefoot22/python-machine-learning/blob/master/images/scattermatrix.png "Scatter Plot")
 
