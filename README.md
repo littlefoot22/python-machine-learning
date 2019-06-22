@@ -106,3 +106,6 @@ plt.savefig('scattermatrix.png')
 
 ![alt text](https://github.com/littlefoot22/python-machine-learning/blob/master/images/scattermatrix.png "Scatter Plot")
 
+
+![alt text](http://www.cqeacademy.com/wp-content/uploads/2018/06/Scatter-Plots-and-Correlation-Examples.png "Correlation Examples")
+
