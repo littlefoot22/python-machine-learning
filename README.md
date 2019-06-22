@@ -27,7 +27,8 @@ just like we did in the iris example from the above turtorial we can peek at the
 ```python
 print(dataset.shape)
 
-(178, 14)
+#output
+#(178, 14)
 ```
 
 
