@@ -1,6 +1,6 @@
 # Basic machine learning with python
 
-a basic machine learning script based on this turtorial https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+a basic machine learning script based on this tutorial https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
 
 tools needed
 * scipy
@@ -15,14 +15,14 @@ data set used http://archive.ics.uci.edu/ml/datasets/Wine
 
 ## names
 
-first the names need to be added, we can pull these attributes from the wine.names file. One diffrence here from the iris example is the class is now a number and its the first entry into the names array
+first the names need to be added, we can pull these attributes from the wine.names file. One difference here from the iris example is the class is now a number and its the first entry into the names array
 
 ```python
 names = ['class', 'Alcohol', 'Malic acid', 'Ash', 'Alcalinity of ash', 'Magnesium', 'phenols', 'Flavanoids', 'Nonflavanoid', 'Proanthocyanins', 'Color', 'Hue', 'diluted wines', 'Proline']
 ```
 
 ### dimensions of dataset
-just like we did in the iris example from the above turtorial we can peek at the data a little bit:
+just like we did in the iris example from the above tutorial we can peek at the data a little bit:
 
 ```python
 print(dataset.shape)
@@ -83,7 +83,7 @@ looks good!
 
 ## histogram
 
-after we run the historam funtion and out put to file we get an idea the distribution between variables
+after we run the histogram function and out put to file we get an idea the distribution between variables
 
 ```python
 # histograms
@@ -92,11 +92,11 @@ plt.savefig('hist.png')
 ```
 ![alt text](https://github.com/littlefoot22/python-machine-learning/blob/master/images/hist.png "Histogram")
 
-again we see lots of signs of normal distrabuiton, which is a good sign for alogrithims and predictions!
+again we see lots of signs of normal distribution, which is a good sign for algorithms and predictions!
 
 ## scatterplot
 
-after we run the scatter_matrix funtion and output to file we get an idea of the correlation between the diffrent variables. This image is a bit harder to read then the iris example, but we can see some signs of highly positive correlation! This suggests a predictable relationship within the data.
+after we run the scatter_matrix function and output to file we get an idea of the correlation between the different variables. This image is a bit harder to read then the iris example, but we can see some signs of highly positive correlation! This suggests a predictable relationship within the data.
 
 ```python
 # histograms
@@ -111,7 +111,7 @@ plt.savefig('scattermatrix.png')
 
 ## training and validation data
 
-setting up the training and validation data is a little diffrent then the iris example for this dataset. we need to split the X array from index 1 to 13 and the Y array at index 0. This is because our class attribute is now at the 0 index of the array and our data attributes make up the rest.
+setting up the training and validation data is a little different then the iris example for this dataset. we need to split the X array from index 1 to 13 and the Y array at index 0. This is because our class attribute is now at the 0 index of the array and our data attributes make up the rest.
 
 We can leave the split at 80/20 so we leave the validation_size at .20
 
@@ -130,7 +130,7 @@ scoring = 'accuracy'
 ```
 
 
-## slecting a model
+## selecting a model
 
 now lets run the same models we did in the iris example and see if we get a hit
 
@@ -188,8 +188,7 @@ print(classification_report(Y_validation, predictions))
 #weighted avg       0.97      0.97      0.97        36
 ```
 
-looks like we hit 97% accuracy on our predictions agaisnt our traiing data and validation set! Thats even higher then the iris example! 
+looks like we hit 97% accuracy on our predictions against our training data and validation set! Thats even higher then the iris example! 
 
 How exciting :D
-
 
