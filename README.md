@@ -1,6 +1,6 @@
 # Basic machine learning with python
 
-a basic machine learning script based on this tutorial https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+a basic machine learning script based on this tutorial https://machinelearningmastery.com/machine-learning-in-python-step-by-step/. This tutorial is referenced multiple times here as the 'iris example'
 
 tools needed
 * scipy
@@ -11,7 +11,7 @@ tools needed
 
 install instructions here: https://www.scipy.org/install.html
 
-data set used http://archive.ics.uci.edu/ml/datasets/Wine
+dataset used http://archive.ics.uci.edu/ml/datasets/Wine
 
 ## names
 
